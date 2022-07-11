@@ -1,0 +1,17 @@
+def findSub(ind,nums,res,ds):
+    nums=sorted(nums)
+    res.append(ds.copy())
+    for i in range(ind,len(nums)):
+        if  i> ind and nums[i]==nums[i-1]:
+            continue
+        ds.append(nums[i])
+        findSub(i+1,nums,res,ds)
+        ds.pop()
+    return res
+    
+class Solution:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        res=[]
+        ds=[]
+        return findSub(0,nums,res,ds)
+        
