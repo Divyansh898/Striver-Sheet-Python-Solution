@@ -1,0 +1,11 @@
+class Solution:
+	def subsetSums(self, arr, N):
+        ds=[]
+	    def sub(ind,sum=0):
+	        if ind==N:
+	            ds.append(sum)
+	            return
+	        sub(ind+1,sum+arr[ind])
+	        sub(ind+1,sum)
+	    sub(0)
+	    return ds
