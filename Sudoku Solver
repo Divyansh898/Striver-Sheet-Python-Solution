@@ -1,0 +1,32 @@
+class Solution:
+    def isplace(self,grid,row,col,item):
+        for i in range(9):
+            if grid[i][col]==item or grid[row][i]==item:
+                return False
+        start=(row//3)*3
+        end=(col//3)*3
+        for i in range(start,start+3):
+            for j in range(end,end+3):
+                if grid[i][j]==item:
+                    return False
+        return True
+    def helper(self,grid):
+        for i in range(9):
+            for j in range(9):
+                if grid[i][j] ==".":
+                    for p in range(1,10):
+                        if self.isplace(grid,i,j,str(p)):
+                            grid[i][j]=str(p)
+                            if self.helper(grid):
+                                return True
+                            else:
+                                grid[i][j]="."
+                    return False
+        return True
+        
+        
+    def solveSudoku(self, board: List[List[str]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        return self.helper(board)
